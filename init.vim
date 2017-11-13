@@ -1,16 +1,21 @@
 "vim-plug required
 set nocompatible
-
 " for mac call plug#begin('~/.vim/bundle')
+
+let g:plug_timeout = 600
 
 call plug#begin()
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'} 
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'vim-syntastic/syntastic'
-"Plug 'powerline/powerline'
+Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python'}
+Plug 'mileszs/ack.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 " vim-plug automatically activates both lines:
@@ -24,7 +29,7 @@ set autoread
 
 "show current position
 set ruler
-set number
+set relativenumber
 
 set showmatch
 
@@ -37,11 +42,15 @@ set expandtab
 set smarttab
 set shiftwidth=4
 set tabstop=4
+set autoindent
+set smartindent
 
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
+"colors
+hi Visual ctermbg=152 guibg=#B2DFE0
 
 "///////////////////////////////
 " SYNTASTIC
@@ -56,14 +65,30 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+"python checker
+let g:syntastic_python_checkers = ['flake8']
+
+"///////////////////////////////
+" AIRLINE
+"///////////////////////////////
+let g:airline_powerline_fonts = 1
+"let g:airline_theme = 'tomorrow'
+
 "///////////////////////////////
 " MAPPINGS
 "////////////////////////////////
 "leader
 let mapleader = " "
-
-map <leader>fs :w
+nnoremap <Space> <NOP>
+map <leader>fs :w<ENTER>
 map <leader>v viw
+map ,y :call yapf#YAPF()<cr>
+
+"splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 "CtrlP
 let g:ctrlp_map = '<c-p>'

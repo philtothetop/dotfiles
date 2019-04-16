@@ -8,7 +8,7 @@ call plug#begin()
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'} 
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-syntastic/syntastic'
@@ -16,7 +16,11 @@ Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python'}
 Plug 'mileszs/ack.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'arcticicestudio/nord-vim'
 call plug#end()
+
+" put this at top or redefines will be erased
+colorscheme nord
 
 " vim-plug automatically activates both lines:
 " filetype plugin indent on
@@ -49,9 +53,7 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
-"colors
-hi Visual ctermbg=152 guibg=#B2DFE0
-
+hi Visual ctermbg=152 ctermfg=0
 "///////////////////////////////
 " SYNTASTIC
 "///////////////////////////////
@@ -72,7 +74,7 @@ let g:syntastic_python_checkers = ['flake8']
 " AIRLINE
 "///////////////////////////////
 let g:airline_powerline_fonts = 1
-"let g:airline_theme = 'tomorrow'
+let g:airline_theme = 'luna'
 
 "///////////////////////////////
 " MAPPINGS
